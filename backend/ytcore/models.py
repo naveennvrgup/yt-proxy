@@ -15,7 +15,7 @@ class YTVideo(models.Model):
 
 
 class ApiKey(models.Model):
-    key=models.CharField(max_length=100)
+    key=models.CharField(max_length=200)
     quota=models.IntegerField(default=10)
     used=models.IntegerField(default=0)
     last_used_date=models.DateField(default=date.today, editable=True)
@@ -25,7 +25,7 @@ class ApiKey(models.Model):
 
 
 def api_key_presave_handler(sender, instance, **kwargs):
-    if not instance.id:
+    if instance._state.adding:
         secret_key = config('SECRET_KEY')
         f = Fernet(secret_key)
         instance.key=f.encrypt(instance.key.encode()).decode()

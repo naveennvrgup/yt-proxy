@@ -8,7 +8,7 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="YT-PROXY [a backup for youtube's new videos]",
+      title="YT-PROXY [a backup for youtube's news videos]",
       default_version='v1',
       description="""
       ## Docs
