@@ -1,1 +1,1 @@
-celery -A server beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+celery -A server beat -l DEBUG --scheduler django_celery_beat.schedulers:DatabaseScheduler
