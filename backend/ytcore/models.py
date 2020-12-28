@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import timedelta, timezone, date
-
+from django.db.models.signals import pre_save
+from decouple import config
+from cryptography.fernet import Fernet
 
 class YTVideo(models.Model):
     title=models.CharField(max_length=100)
@@ -20,3 +22,12 @@ class ApiKey(models.Model):
 
     def __str__(self):
         return f"{self.id} >> {self.used}/{self.quota} in {self.last_used_date}"
+
+
+def api_key_presave_handler(sender, instance, **kwargs):
+    if not instance.id:
+        secret_key = config('SECRET_KEY')
+        f = Fernet(secret_key)
+        instance.key=f.encrypt(instance.key.encode()).decode()
+
+pre_save.connect(api_key_presave_handler, sender=ApiKey)
