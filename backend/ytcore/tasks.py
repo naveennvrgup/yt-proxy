@@ -1,24 +1,40 @@
 from celery import shared_task
 import requests
 from decouple import config
-from ytcore.models import YTVideo
+from ytcore.models import YTVideo, ApiKey
 from dateutil.parser import parse
+from datetime import date
 
-@shared_task
-def helloworld():
-    print("celery hello world")
-    return "celery hello world"
+
+def get_api_key():
+    keys = ApiKey.objects.all()
+    today = date.today()
+
+    for key in keys:
+        if key.last_used_date < today:
+            key.last_used_date=today
+            key.used=0
+            key.save()
+
+    for key in keys:
+        if key.used < key.quota:
+            return key
+
+    raise RuntimeError("API Quota Overflow")
 
 
 @shared_task
 def fetch_from_yt():
-    API_KEY=config('GGL_API_KEY')
+    API_KEY=get_api_key()
     query_string='news'
     published_after='2020-12-26T16:51:48Z'
 
-    r = requests.get(f'https://www.googleapis.com/youtube/v3/search?q={query_string}&part=snippet&key={API_KEY}&maxResults=20&publishedAfter={published_after}&type=video&order=date')
+    r = requests.get(f'https://www.googleapis.com/youtube/v3/search?q={query_string}&part=snippet&key={API_KEY.key}&maxResults=20&publishedAfter={published_after}&type=video&order=date')
     videos = r.json()['items']
-    
+
+    API_KEY.used+=1
+    API_KEY.save()
+
     last_video = YTVideo.objects.order_by('-publish_time').first()
     
     new_videos = []
