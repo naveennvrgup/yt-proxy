@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react'
 import './App.css';
 
 function App() {
+  const [videos, setVideos] = useState([])
+  const [prev, setPrev] = useState(null)
+  const [next, setNext] = useState(null)
+
+  
+  useEffect(()=>{
+    fetch('http://localhost:8002/api/ytproxy/')
+    .then(d=>d.json())
+    .then(d=>{
+      console.log(d)
+      setVideos(d['results'])
+      setPrev(d['previous'])
+      setNext(d['next'])
+    })
+  },[])
+
+  let videos_mapped = videos.map(ele => <div>
+    <img src={ele['thumbnail_url']} alt="thumbnail"/>
+    <div>{ele['title']}</div>
+    <div>{ele['description']}</div>
+    <div>{ele['publish_time']}</div>
+  </div>)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" >
+      <nav className="navbar navbar-dark bg-dark" >
+        <div className="navbar-brand brand-name">YT-Proxy</div>
+        <ul className="navbar-nav mx-auto">
+          <li className="nav-item active">
+            <div className="nav-link punch-line">[ We are a backup for youtube's new videos ]</div>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+          {videos_mapped}
+      </div>
     </div>
   );
 }
