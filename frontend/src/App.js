@@ -61,7 +61,7 @@ function App() {
       <img src={ele['thumbnail_url']} alt="thumbnail" />
       <div className='title'>{ele['title'].slice(0, 50)}...</div>
       <div className='desc'>{ele['description'].slice(0, 180)}</div>
-      <div className='time'>{monthNames[timestamp.getMonth()]} {timestamp.getDate()}, {timestamp.getHours() % 12} {timestamp.getHours() >= 12 ? "PM" : "AM"}</div>
+      <div className='time'>{monthNames[timestamp.getMonth()]} {timestamp.getDate()}, {timestamp.getHours() % 12==0?12:timestamp.getHours() % 12} {timestamp.getHours() >= 12 && timestamp.getHours() <24 ? "PM" : "AM"}</div>
     </div>
   })
 

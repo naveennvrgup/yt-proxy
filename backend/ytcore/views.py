@@ -8,10 +8,9 @@ from .serializers import YTVideoSerializer
 class ResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'
-    ordering  = '-publish_time'
 
 
 class YTVideosListAPIView(generics.ListAPIView):
-    queryset = YTVideo.objects.all()
+    queryset = YTVideo.objects.order_by('-publish_time').all()
     serializer_class = YTVideoSerializer
     pagination_class = ResultsSetPagination
