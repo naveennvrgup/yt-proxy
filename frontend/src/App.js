@@ -76,10 +76,12 @@ function App() {
       <nav className="navbar navbar-dark bg-dark" >
         <div className="navbar-brand brand-name">YT-Proxy</div>
         <ul className="navbar-nav mx-auto">
-          <li className="nav-item active">
-            <div className="nav-link punch-line">[ We are a backup for youtube's news videos ]</div>
+          <li className="nav-item">
+            <span className="nav-link punch-line">[ We are a backup for youtube's news videos ]</span>
           </li>
         </ul>
+        <a className="nav-link btn btn-success btn-sm" href='/docs/'>Swagger docs</a>
+        <a className="nav-link btn btn-primary btn-sm ml-3" href='/admin/'>Django Admin</a>
       </nav>
 
       <div className='container'>
