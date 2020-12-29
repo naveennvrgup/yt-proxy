@@ -5,6 +5,7 @@ from ytcore.models import YTVideo, ApiKey
 from dateutil.parser import parse
 from datetime import date
 from cryptography.fernet import Fernet
+import traceback
 
 
 def get_api_key():
@@ -21,7 +22,7 @@ def get_api_key():
         if key_obj.used < key_obj.quota:
             return key_obj
 
-    raise RuntimeError("API Quota Overflow")
+    raise RuntimeError("API Keys Quota Overflow!")
 
 
 
@@ -33,7 +34,11 @@ def fetch_from_yt():
 
     query_string='news'
     published_after='2020-12-26T16:51:48Z'
-    r = requests.get(f'https://www.googleapis.com/youtube/v3/search?q={query_string}&part=snippet&key={API_KEY}&maxResults=20&publishedAfter={published_after}&type=video&order=date')
+    r = requests.get(f'https://www.googleapis.com/youtube/v3/search?q={query_string}&part=snippet&key={API_KEY}&maxResults=40&publishedAfter={published_after}&type=video&order=date')
+
+    if r.status_code!=200:
+        raise RuntimeError("Youtube says: API Quota Overflow!")
+    
     videos = r.json()['items']
 
     key_obj.used+=1
