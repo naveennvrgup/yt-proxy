@@ -12,7 +12,7 @@
 - Server calls the YouTube API continuously in background (async) with interval of 10 seconds for fetching the latest videos for a predefined search query.
 - A GET API which returns the stored video data in a paginated response sorted in descending order of published datetime.
 - Support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key. 
-- A dashboard to view the stored videos.
+- A dashboard to view the stored videos with filtering and sorting options.
 
 
 ### Run Backend
