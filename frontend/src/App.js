@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 
+let baseurl=''
+if(process.env.NODE_ENV === 'development'){
+  baseurl='http://localhost:8002'
+}
+
+
 function App() {
   const [videos, setVideos] = useState([])
   const [prev, setPrev] = useState(null)
@@ -10,7 +16,7 @@ function App() {
 
 
   const fetch_videos = (pgno, psize) => {
-    fetch(`http://localhost:8002/api/ytproxy/?page=${pgno}&page_size=${psize}`)
+    fetch(`${baseurl}/api/ytproxy/?page=${pgno}&page_size=${psize}`)
       .then(d => d.json())
       .then(d => {
         setVideos(d['results'])
