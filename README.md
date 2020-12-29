@@ -66,6 +66,6 @@ DJANGO_SECRET=<choice-of-django-secret-key>
 <img src='./snaps/fetchedvids.png'>
 <img src='./snaps/celery.png'>
 <img src='./snaps/apikeys.png'>
-<img src='./snaps/swaggerdocs.png'>
+<img src='./snaps/swaggerdocs2.png'>
 <img src='./snaps/ui.png'>
 <img src='./snaps/periodic.png'>
