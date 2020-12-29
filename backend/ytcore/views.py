@@ -11,7 +11,7 @@ class ResultsSetPagination(PageNumberPagination):
 
 
 class YTVideosListAPIView(generics.ListAPIView):
-    queryset = YTVideo.objects.order_by('-publish_time').all()
+    queryset = YTVideo.objects.all()
     serializer_class = YTVideoSerializer
     pagination_class = ResultsSetPagination
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
