@@ -9,12 +9,11 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="YT-PROXY [a backup for youtube's news videos]",
+      title="YT-PROXY [We are a backup for youtube's news videos]",
       default_version='v1',
       description="""
       ## Docs
-
-        1. coming soon
+         Hello there! The docs are hosted at [https://github.com/naveennvrgup/yt-proxy](https://github.com/naveennvrgup/yt-proxy)
       """,
    ),
    public=True,
