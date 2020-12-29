@@ -23,6 +23,7 @@
 ### Screenshots:
 
 <img src='./snaps/fetchedvids.png'>
+<img src='./snaps/celery.png'>
 <img src='./snaps/apikeys.png'>
 <img src='./snaps/swaggerdocs.png'>
 <img src='./snaps/ui.png'>

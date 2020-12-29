@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 
+// flexible base url for dev/prod
 let baseurl=''
 if(process.env.NODE_ENV === 'development'){
   baseurl='http://localhost:8002'
@@ -8,6 +9,7 @@ if(process.env.NODE_ENV === 'development'){
 
 
 function App() {
+  // states
   const [videos, setVideos] = useState([])
   const [prev, setPrev] = useState(null)
   const [next, setNext] = useState(null)
@@ -43,7 +45,8 @@ function App() {
     fetch_videos(1)
   }, [])
 
-
+  // a reusable pagination component 
+  // used on top and bottom
   const Pagination = (props) => {
     return <div className='d-flex align-items-center my-3 align-content-around'>
       <button onClick={previousPageChangeHandler} disabled={prev === null} className="btn btn-sm btn-outline-">previous</button>
@@ -67,6 +70,7 @@ function App() {
       <img src={ele['thumbnail_url']} alt="thumbnail" />
       <div className='title'>{ele['title'].slice(0, 50)}...</div>
       <div className='desc'>{ele['description'].slice(0, 180)}</div>
+      {/* building custom date format */}
       <div className='time'>{monthNames[timestamp.getMonth()]} {timestamp.getDate()}, {timestamp.getHours() % 12==0?12:timestamp.getHours() % 12} {timestamp.getHours() >= 12 && timestamp.getHours() <24 ? "PM" : "AM"}</div>
     </div>
   })

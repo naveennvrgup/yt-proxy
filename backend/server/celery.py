@@ -15,6 +15,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
 
+# the youtube fetching happends every 10 seconds in async 
 app.conf.beat_schedule = {
     'fetch-every-10-seconds': {
         'task': 'ytcore.tasks.fetch_from_yt',

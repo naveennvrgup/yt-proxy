@@ -2,24 +2,16 @@ from pathlib import Path
 from decouple import config
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'la#(eq-4qjbn4m*2a*$t#vz!xbf06fdfbm&mwfmqeb^i99nj#h'
-
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = config('DJANGO_SECRET')
 DEBUG = True
 
+# for react dev purpose allowed all hosts temporarily
 ALLOWED_HOSTS = ['*']
+# for react dev purpose allowed CORS
 CORS_ALLOW_ALL_ORIGINS = True
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
@@ -69,9 +61,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'server.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -79,9 +68,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -99,11 +85,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
+# the time is stored as UTC+00:00 in the database
+# can be tranformed to local time in the frontend 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -113,11 +99,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+# The react files once built are collected by django with help of
+# ./manage.py collectstatic cmd
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = ['../frontend/build/static/']
 
+# a hosted rabbitmq is choosen a the broker for celery for convenience
+# https://www.cloudamqp.com/#/
 CELERY_BROKER_URL = config('HOSTED_RABBITMQ')
