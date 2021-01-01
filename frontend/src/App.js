@@ -58,7 +58,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch_videos(1,10,'','')
+    fetch_videos(1,10,orderBy,'')
   }, [])
 
 
