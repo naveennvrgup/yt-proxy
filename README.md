@@ -13,6 +13,7 @@
 - A GET API which returns the stored video data in a paginated response sorted in descending order of published datetime.
 - Support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key. 
 - A dashboard to view the stored videos with filtering and sorting options.
+- Unit tests are added for the backend. 
 
 
 ### Run Backend
@@ -35,6 +36,7 @@ DJANGO_SECRET=<choice-of-django-secret-key>
     - create an admin user
     - start server at [http://localhost:5557/](http://localhost:5557/)
 * In terminal 2: `source start-celery.sh`. This will run celery and every 10 seconds fetch youtube data. The task can be located at `ytcore.tasks.fetch_from_yt`. The celery config is present at `server.celery`.
+* To run the test suite `python manage.py test`
 
 
 ### Run Frontend
