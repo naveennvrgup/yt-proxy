@@ -13,7 +13,7 @@
 - A GET API which returns the stored video data in a paginated response sorted in descending order of published datetime.
 - Support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key. 
 - A dashboard to view the stored videos with filtering and sorting options.
-- Unit tests are added for the backend. 
+- 9 Unit tests are added for the backend at `ytcore.tests`. 
 
 
 ### Run Backend
@@ -68,6 +68,7 @@ DJANGO_SECRET=<choice-of-django-secret-key>
 <img src='./snaps/fetchedvids.png'>
 <img src='./snaps/celery.png'>
 <img src='./snaps/apikeys.png'>
+<img src='./snaps/testcases.png'>
 <img src='./snaps/swaggerdocs2.png'>
 <img src='./snaps/ui.png'>
 <img src='./snaps/periodic.png'>

@@ -31,7 +31,7 @@ class FetchAPIKeyTestCase(TestCase):
 
     def test_get_key_among_keys_with_exhausted_quota(self):
         # Two keys with exhausted quota are created 
-        # one key with unused quota is created late
+        # one key with unused quota is created
         # right behaviour is to obtain the third key
 
         ApiKey.objects.create(key=self.sample_key, quota=1, used=1)
@@ -53,7 +53,7 @@ class FetchAPIKeyTestCase(TestCase):
     def test_should_update_date_in_key(self):
         # when came across a key with full quota used the day before
         # the get function should update the quota usage to nil
-        # and  date to today
+        # and update date to today
 
         key_obj = ApiKey.objects.create(
             key=self.sample_key, 
@@ -61,7 +61,6 @@ class FetchAPIKeyTestCase(TestCase):
             used=1, 
             last_used_date=date.today()-timedelta(days=1))
         
-        # import pdb; pdb.set_trace()
         actual = get_api_key()
 
         self.assertIsNotNone(actual)

@@ -39,8 +39,9 @@ def fetch_from_yt():
     # build request url
     query_string='news'
     published_after='2020-12-26T16:51:48Z'
-    r = requests.get(f'https://www.googleapis.com/youtube/v3/search?q={query_string}&part=snippet&key={API_KEY}&maxResults=40&publishedAfter={published_after}&type=video&order=date')
-
+    data_uri = f'https://www.googleapis.com/youtube/v3/search?q={query_string}&part=snippet&key={API_KEY}&maxResults=40&publishedAfter={published_after}&type=video&order=date'
+    r = requests.get(data_uri)
+    
     # check for favourable output
     if r.status_code!=200:
         raise RuntimeError("Youtube says: API Quota Overflow!")
