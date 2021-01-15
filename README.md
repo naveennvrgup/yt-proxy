@@ -1,9 +1,9 @@
 # YT-PROXY [We are a backup for youtube's news videos] [hosted here🐁](http://34.87.155.79:5556/)
 
-### Checkout hosted server [here 🎯](http://34.87.155.79:5556/)
-1. [react ui here](http://34.87.155.79:5556/)
-1. [swagger docs here](http://34.87.155.79:5556/docs/)
-1. [django admin here](http://34.87.155.79:5556/admin/login/?next=/admin/)
+### Checkout hosted server [here 🎯](http://34.87.142.140:5556/)
+1. [react ui here](http://34.87.142.140:5556/)
+1. [swagger docs here](http://34.87.142.140:5556/)
+1. [django admin here](http://34.87.142.140:5556/admin/login/?next=/admin/)
     - username: `admin`
     - password: `admin`
 
