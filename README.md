@@ -1,4 +1,4 @@
-# YT-PROXY [We are a backup for youtube's news videos] [hosted here🐁](http://34.87.155.79:5556/)
+# YT-PROXY [We are a backup for youtube's news videos] [hosted here🐁](http://34.87.142.140:5556/)
 
 ### Checkout hosted server [here 🎯](http://34.87.142.140:5556/)
 1. [react ui here](http://34.87.142.140:5556/)
